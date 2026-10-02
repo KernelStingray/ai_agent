@@ -1,0 +1,36 @@
+services:
+  omniagent:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: omniagent
+    restart: unless-stopped
+
+    # -------------------------------------------------------------------------
+    # Сетевой режим:
+    # 'network_mode: host' на Linux позволяет контейнеру работать напрямую с
+    # сетевым стеком хоста. Благодаря этому:
+    # 1. Доступ к локальной Ollama (http://127.0.0.1:11434) работает без изменения
+    #    конфигурации OLLAMA_HOST.
+    # 2. Порт 8000 автоматически доступен на хосте.
+    # -------------------------------------------------------------------------
+    network_mode: host
+
+    # Для изоляции в bridge-сети раскомментируйте следующие строки и закомментируйте 'network_mode: host':
+    # ports:
+    #   - "8000:8000"
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
+    # environment:
+    #   - OLLAMA_BASE_URL=http://host.docker.internal:11434
+
+    volumes:
+      # Сохранение сгенерированных файлов (Excel, Word, PPTX, PDF, ZIP) и логов туннеля на хосте
+      - ./backend/storage:/app/backend/storage
+
+    environment:
+      - OLLAMA_BASE_URL=http://127.0.0.1:11434
+      - CPU_THREADS=7
+      - CONTEXT_SIZE=8192
+      - DEFAULT_MODEL=qwen2.5:7b
+      - PORT=8000

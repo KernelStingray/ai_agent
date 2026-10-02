@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.gitignore
+.agents/
+.gemini/
+backend/storage/temp/*
+backend/storage/artifacts/*
+!backend/storage/artifacts/.gitkeep
+!backend/storage/temp/.gitkeep
+backend/storage/cloudflared.log
+.DS_Store
+*.log

@@ -1,0 +1,37 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Logs
+*.log
+*.log.*
+backend/storage/cloudflared.log*
+
+# Storage & Temporary files
+backend/storage/temp/*
+!backend/storage/temp/.gitkeep
+backend/storage/artifacts/*
+!backend/storage/artifacts/.gitkeep
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# IDE & Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# IDE Agent cache
+.gemini/
